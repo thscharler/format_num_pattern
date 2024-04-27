@@ -1,5 +1,5 @@
 use format_num_pattern as number;
-use format_num_pattern::{FormatNumber, NumberFmtError, NumberFormat, NumberSymbols};
+use format_num_pattern::{DisplayNumber, NumberFmtError, NumberFormat, NumberSymbols};
 use std::fmt;
 
 #[test]

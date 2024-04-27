@@ -53,7 +53,7 @@ let s = m2.fmt(4561.2234).expect("works");
 assert_eq!(s.as_str(), "€   4\u{202f}561,22");
 
 // postfix fmt using the FormatNumber trait
-use format_num_pattern::FormatNumber;
+use format_num_pattern::DisplayNumber;
 println!("combined output: {}", 4561.2234f64.fmt(&m2));
 ```
 

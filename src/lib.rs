@@ -652,7 +652,7 @@ impl ParseNumber for &str {
 }
 
 /// Format a number according to a format string.
-pub trait FormatNumber
+pub trait DisplayNumber
 where
     Self: Copy + LowerExp + Display,
 {
@@ -667,7 +667,7 @@ where
     fn fmt<'a>(&self, format: &'a NumberFormat) -> RefFormattedNumber<'a, Self>;
 }
 
-/// Holds a temporary result from [FormatNumber]. The only purpose is as anchor for the
+/// Holds a temporary result from [DisplayNumber]. The only purpose is as anchor for the
 /// Display trait.
 #[derive(Debug)]
 pub struct FormattedNumber<'a, Number> {
@@ -686,7 +686,7 @@ impl<'a, Number: Copy + LowerExp + Display> Display for FormattedNumber<'a, Numb
     }
 }
 
-/// Holds a temporary result from [FormatNumber]. The only purpose is as anchor for the
+/// Holds a temporary result from [DisplayNumber]. The only purpose is as anchor for the
 /// Display trait.
 #[derive(Debug)]
 pub struct RefFormattedNumber<'a, Number> {
@@ -706,7 +706,7 @@ impl<'a, Number: Copy + LowerExp + Display> Display for RefFormattedNumber<'a, N
 
 macro_rules! define_fmt {
     ($t:ty) => {
-        impl FormatNumber for $t {
+        impl DisplayNumber for $t {
             #[inline]
             fn format<'a>(
                 &self,
