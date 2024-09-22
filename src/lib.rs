@@ -669,6 +669,7 @@ where
 
 /// Holds a temporary result from [DisplayNumber]. The only purpose is as anchor for the
 /// Display trait.
+#[doc(hidden)]
 #[derive(Debug)]
 pub struct FormattedNumber<'a, Number> {
     num: Number,
@@ -688,6 +689,7 @@ impl<'a, Number: Copy + LowerExp + Display> Display for FormattedNumber<'a, Numb
 
 /// Holds a temporary result from [DisplayNumber]. The only purpose is as anchor for the
 /// Display trait.
+#[doc(hidden)]
 #[derive(Debug)]
 pub struct RefFormattedNumber<'a, Number> {
     num: Number,
