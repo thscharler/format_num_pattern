@@ -3,6 +3,7 @@
 pub use pure_rust_locales::Locale;
 
 use pure_rust_locales::locale_match;
+#[cfg(feature = "rust_decimal")]
 use rust_decimal::Decimal;
 use std::fmt;
 use std::fmt::{Debug, Display, Error as FmtError, Formatter, LowerExp, Write as FmtWrite};
@@ -52,6 +53,7 @@ impl NumberSymbols {
     /// This function sets
     /// * decimal_sep to LC_NUMERIC::DECIMAL_POINT,
     /// * decimal_grp to LC_NUMERIC::THOUSANDS_SEP
+    ///
     /// Fills the rest with defaults.
     pub fn numeric(locale: Locale) -> Self {
         Self {
@@ -73,6 +75,7 @@ impl NumberSymbols {
     /// * negative_sym to LC_MONETARY::NEGATIVE_SIGN
     /// * positive_sym to LC_MONETARY::POSITIVE_SIGN
     /// * currency_sym to LC_MONETARY::CURRENCY_SYMBOL
+    ///
     /// Fills the rest with defaults.
     pub fn monetary(locale: Locale) -> Self {
         Self {
@@ -94,6 +97,7 @@ impl NumberSymbols {
     /// * negative_sym to LC_MONETARY::NEGATIVE_SIGN
     /// * positive_sym to LC_MONETARY::POSITIVE_SIGN
     /// * currency_sym to LC_MONETARY::INT_CURR_SYMBOL
+    ///
     /// Fills the rest with defaults.
     pub fn int_monetary(locale: Locale) -> Self {
         Self {
@@ -744,6 +748,7 @@ define_fmt!(i16);
 define_fmt!(i8);
 define_fmt!(usize);
 define_fmt!(isize);
+#[cfg(feature = "rust_decimal")]
 define_fmt!(Decimal);
 
 pub mod core {
