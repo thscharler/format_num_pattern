@@ -1,3 +1,7 @@
+# 0.9.3
+
+* make rust_decimal optional
+
 # 0.9.2
 
 * Wrong repository in Cargo.toml
