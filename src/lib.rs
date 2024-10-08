@@ -1095,11 +1095,7 @@ pub mod core {
 
         // grouping
         let skip_group = sym.decimal_grp.is_none();
-        let disp_decimal_grp = if let Some(decimal_grp) = sym.decimal_grp {
-            decimal_grp
-        } else {
-            ' '
-        };
+        let disp_decimal_grp = sym.decimal_grp.unwrap_or(' ');
 
         // sign
         let disp_sign = if raw_sign.is_empty() {
