@@ -1,6 +1,6 @@
 [package]
 name = "format_num_pattern"
-version = "0.9.3"
+version = "0.9.4"
 edition = "2021"
 authors = ["thomasscharler <thscharler@gmail.com>"]
 description = "format numbers according to a pattern string; localized"
@@ -55,10 +55,11 @@ memchr = "2.7.2"
 rust_decimal = { version = "1.34", optional = true }
 rust_decimal_macros = { version = "1.34", optional = true }
 
-
 [dev-dependencies]
 fern = "0.6"
 humantime = "2.1"
 rand = "0.8.5"
 ryu = "1.0.17"
 anyhow = "1.0"
+rust_decimal = { version = "1.34" }
+rust_decimal_macros = { version = "1.34" }

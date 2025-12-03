@@ -964,6 +964,8 @@ pub mod core {
                 Token::Numeric(Mode::Fraction, _, _) => {
                     if c.is_ascii_digit() {
                         buf_frac.push(c);
+                    } else if c == ' ' {
+                        // ok
                     } else {
                         return Err(NumberFmtError::ParseInvalidDigit);
                     }
