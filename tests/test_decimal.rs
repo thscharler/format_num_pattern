@@ -1,4 +1,3 @@
-use format_num_pattern as number;
 use format_num_pattern::{NumberFormat, NumberSymbols};
 use rust_decimal::Decimal;
 
