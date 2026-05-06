@@ -812,31 +812,20 @@ pub mod core {
         )
     }
 
-    /// Get the clean number.
+    /// Get a clean number.
     ///
-    /// Takes only digits and maps backwards according to the symbol table.
-    /// This will only work if you don't use separators that can be mistaken
-    /// with one of those symbols.
-    ///
-    /// Removes any leading zeros too.
+    /// This skips non-digits in the input string and maps
+    /// negative_sym to '-' and decimal_sep to '.' in the output string.
     pub fn clean_num<W: FmtWrite>(
         formatted: &str,
         sym: &NumberSymbols,
         out: &mut W,
     ) -> Result<(), NumberFmtError> {
-        let mut seen_non_0 = false;
         for c in formatted.chars() {
             if c.is_ascii_digit() {
-                seen_non_0 |= c != '0';
-                if seen_non_0 {
-                    out.write_char(c)?;
-                }
-            } else if c == sym.negative_sym {
+                out.write_char(c)?;
+            } else if c == sym.negative_sym || c == '-' {
                 out.write_char('-')?;
-            } else if c == sym.positive_sym {
-                // noop
-            } else if c == '+' {
-                // todo: ???
             } else if c == sym.decimal_sep {
                 out.write_char('.')?;
             } else if c == sym.exponent_lower_sym || c == sym.exponent_upper_sym {
