@@ -1,6 +1,6 @@
 [package]
 name = "format_num_pattern"
-version = "0.9.4"
+version = "0.9.5"
 edition = "2021"
 authors = ["thomasscharler <thscharler@gmail.com>"]
 description = "format numbers according to a pattern string; localized"

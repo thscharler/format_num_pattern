@@ -1,6 +1,10 @@
-# 0.9.4
+# 0.9.5
 
 * fix #1: clean_num failed miserably on 0.01 and 0.00
+
+# 0.9.4
+
+* fix: space in fraction produced an error
 
 # 0.9.3
 
