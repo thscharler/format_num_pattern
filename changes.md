@@ -1,3 +1,7 @@
+# 0.9.4
+
+* fix #1: clean_num failed miserably on 0.01 and 0.00
+
 # 0.9.3
 
 * make rust_decimal optional
