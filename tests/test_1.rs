@@ -1,4 +1,4 @@
-use format_num_pattern::{parse_sym, NumberFormat, NumberSymbols};
+use format_num_pattern::{parse_sym, NumberSymbols};
 use pure_rust_locales::Locale;
 use rust_decimal::Decimal;
 
