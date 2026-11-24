@@ -5,9 +5,9 @@ pub use pure_rust_locales::Locale;
 use pure_rust_locales::locale_match;
 #[cfg(feature = "rust_decimal")]
 use rust_decimal::Decimal;
-use std::fmt;
 use std::fmt::{Debug, Display, Error as FmtError, Formatter, LowerExp, Write as FmtWrite};
 use std::str::{from_utf8_unchecked, FromStr};
+use std::{fmt, mem};
 
 /// Symbols for number formatting.
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -267,6 +267,8 @@ pub struct NumberFormat {
     tok: Vec<Token>,
     /// Symbols.
     sym: NumberSymbols,
+    /// Temp
+    out: String,
 }
 
 /// Errors
@@ -502,6 +504,7 @@ impl NumberFormat {
             len_frac,
             tok: pattern,
             sym,
+            out: Default::default(),
         })
     }
 
@@ -603,6 +606,30 @@ impl NumberFormat {
             }
         }
         out
+    }
+
+    /// Formats and unwraps any error internally.
+    ///
+    /// __Note__
+    ///
+    /// The error is written to the result string using {:?}.
+    /// So this one may be convenient in some situations, but ...
+    ///
+    /// __Note__
+    ///
+    /// This renders to an internal buffer and returns a reference.
+    #[inline]
+    pub fn fmt_u_str<Number: LowerExp + Display>(&mut self, number: Number) -> &str {
+        let mut out = mem::take(&mut self.out);
+        match core::format_to(number, self, self.sym(), &mut out) {
+            Ok(_) => {}
+            Err(e) => {
+                out.clear();
+                _ = write!(out, "{:?}", e);
+            }
+        }
+        self.out = out;
+        self.out.as_str()
     }
 
     /// Formats.
